@@ -1,0 +1,22 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Login #header {
+    justify-self: left;
+    width: 50vw;
+}
+
+.Login Form {
+    width: 50vw;
+}
+
+.Login #register {
+    justify-self: left;
+    width: 50vw;
+}

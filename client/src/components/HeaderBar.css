@@ -1,0 +1,42 @@
+.HeaderBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: black;
+    height: 64px;
+}
+
+.HeaderBar-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    color: white;
+    width: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.HeaderBar-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.HeaderBar-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-end;
+    width: 200px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.HeaderBar-right #auth {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
