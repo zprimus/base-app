@@ -66,7 +66,7 @@ app.post('/api/login', async (req, res) => {
     }
 })
 
-app.get('/api/quote', async (req, res) => {
+app.get('/api/getUserData', async (req, res) => {
     const token = req.headers['x-access-token']
 
     try {
@@ -74,9 +74,16 @@ app.get('/api/quote', async (req, res) => {
         const email = decoded.email
         const user = await User.findOne({email: email})
 
-        return res.json({ status: 'ok', quote: user.quote })
-    } catch {
-        console.log(error)
+        return res.json({ 
+            status: 'ok',
+            name: user.name,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            birthDate: user.birthDate,
+            ethnicity: user.ethnicity,
+        })
+    } catch(err) {
+        console.log(err)
         res.json({ status: 'error', error: 'invalid token'})
     }
 })
@@ -91,12 +98,11 @@ app.post('/api/quote', async (req, res) => {
 
         return res.json({ status: 'ok', quote: user.quote })
     } catch {
-        console.log(error)
+        console.log(err)
         res.json({ status: 'error', error: 'invalid token'})
     }
 })
 
 app.listen(PORTNUMBER, () => {
     console.log('Server started on ' + PORTNUMBER)
-    console.log(process.env.SALT_ROUNDS)
 })
