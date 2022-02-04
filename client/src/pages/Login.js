@@ -4,6 +4,14 @@
 import { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+
+// features
+import { login } from '../reducers/user';
+
+// api
+import api_login from '../api/login';
+import api_getUserData from '../api/getUserData';
 
 // styles
 import './Login.css';
@@ -14,29 +22,36 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function loginUser(e) {
     e.preventDefault();
 
-    const response = await fetch(process.env.REACT_APP_LOGIN_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    })
+    const data_login = await api_login(email, password);
 
-    const data = await response.json()
+    if(data_login.user && (data_login.status === 'ok')) {
 
-    if(data.user) {
-      localStorage.setItem('token', data.user)
+      // store token in client browser
+      localStorage.setItem('token', data_login.user);
+
+      // get user data from db
+      const data_getUserData = await api_getUserData();
+
+      // send data to redux store
+      dispatch(
+        login({
+          name: data_getUserData.name,
+          email: data_getUserData.email,
+          phoneNumber: data_getUserData.phoneNumber,
+          birthDate: data_getUserData.birthDate,
+          ethnicity: data_getUserData.ethnicity,
+        })
+      );      
+
       alert('Login successful')
       navigate('/')
     } else {
-      alert('Please check your username and password')
+      alert(data_login.error + 'Please check your username and password')
     }
   }
 

@@ -12,21 +12,6 @@ const Home = () => {
     const [postData, setPostData] = useState('');
     const [getData, setGetData] = useState('');
 
-    async function getSomething() {
-        const req = await fetch(process.env.REACT_APP_LOGIN_API, {
-            headers: {
-                'x-access-token' : localStorage.getItem('token')
-            }
-        })
-
-        const data = await req.json()
-        if(data.status === 'ok') {
-            setGetData(data.name)
-        } else {
-            alert(data.error)
-        }
-    }
-
     async function postSomething(e) {
         e.preventDefault();
 

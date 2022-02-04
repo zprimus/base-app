@@ -1,0 +1,31 @@
+.UserSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.UserSettings #header {
+    justify-self: left;
+    width: 50vw;
+}
+
+.UserSettings #section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50vw;
+}
+
+.UserSettings Form {
+    width: 50vw;
+}
+
+.UserSettings #editButton #cancelButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}

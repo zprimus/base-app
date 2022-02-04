@@ -84,18 +84,18 @@ function Register() {
           placeholder="Password"
         />
         <br/>
-        <Form.Control 
-          value={birthDate}
-          onChange={(e) => setBirthDate(e.target.value)}
-          type="date"
-          min="1900-01-01"
-        />
-        <br/>
         <Form.Control  
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           type="tel"
           placeholder="Phone Number (optional)"
+        />
+        <br/>
+        <Form.Control 
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
+          type="date"
+          min="1900-01-01"
         />
         <br/>
         <br/>
