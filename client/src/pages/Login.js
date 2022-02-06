@@ -24,7 +24,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  async function loginUser(e) {
+  const loginUser = async (e) => {
     e.preventDefault();
 
     const data_login = await api_login(email, password);
@@ -46,7 +46,7 @@ function Login() {
           birthDate: data_getUserData.birthDate,
           ethnicity: data_getUserData.ethnicity,
         })
-      );      
+      );    
 
       alert('Login successful')
       navigate('/')
