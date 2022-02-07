@@ -11,21 +11,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Register() {
   const { handleSubmit, handleChange, values, errors, isSubmitted } = useForm();
-  
+  //console.log(values)  
   return (
     <div className='Register'>
-      {
-        !isSubmitted ? (
-          <FormRegister
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            values={values}
-            errors={errors}
-          />
-        ) : (
-          <FormSuccess/>
-        )
-      }
+      <div id='art'>
+        
+      </div>
+      <div id='form'>
+        {
+          !isSubmitted ? (
+            <FormRegister
+              handleSubmit={handleSubmit}
+              handleChange={handleChange}
+              values={values}
+              errors={errors}
+            />
+          ) : (
+            <FormSuccess/>
+          )
+        }
+      </div>
     </div>
   );
 }

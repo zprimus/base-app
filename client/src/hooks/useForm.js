@@ -1,3 +1,4 @@
+// dependencies
 import { useEffect, useState } from 'react';
 import validate from '../app/validation';
 
@@ -18,31 +19,30 @@ const useForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    /*
+    
     useEffect(() => {
-        
+        if(Object.keys(errors).length === 0 && isSubmitting) {
+            registerUser();
+        };
     }, [errors]);
-    */
+    
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        const valuesBuffer = values;
+        e.preventDefault();
 
-        valuesBuffer[name] = value;
-
+        const { name, value } = e.target;
+        let valuesBuffer = {...values, [name]: value }
+        
         setValues(valuesBuffer);
-        setErrors(validate(valuesBuffer));
-
-        setIsChanged(true);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        setErrors(validate(values));
+
         setIsSubmitting(true);
-        if(Object.keys(errors).length === 0 && isChanged && isSubmitting) {
-            registerUser();
-        };
+        
     }
 
     const registerUser = async () => {

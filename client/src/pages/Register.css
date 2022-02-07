@@ -1,2 +1,15 @@
 .Register {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.Register #art {
+}
+
+.Register #form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

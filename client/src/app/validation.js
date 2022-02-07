@@ -1,6 +1,9 @@
 export default function validation(values) {
     let errors = {}
 
+    const passwordMin = 6;
+    const passwordMax = 128;
+
     // Name
     if(!values.name.trim()) {
         errors.name = "Name required"
@@ -16,22 +19,29 @@ export default function validation(values) {
     // Password
     if(!values.password) {
         errors.password = "Password is required";
-    } else if(values.password.length < 6) {
-        errors.password = "Password needs to be 6 characters or more";
+    } else if(values.password.length < passwordMin) {
+        errors.password = "Password needs to be " + passwordMin + " characters or more";
+    } else if(values.password.length > passwordMax) {
+        errors.password = "Password needs to be " + passwordMax + " characters or less";
     }
 
     // Password 2
-    if(!values.password2) {
-        errors.password2 = "Password is required";
-    } else if(values.password2 !== values.password) {
+    if(values.password2 !== values.password) {
         errors.password2 = "Passwords do not match";
     }
 
     // Phone Number
     if(values.phoneNumber) {
         if(!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(values.phoneNumber)) {
-            errors.phoneNumber = "Phone Number is is invalid";
+            errors.phoneNumber = "Phone Number is invalid";
         }
+    }
+    
+    // Birth Date
+    if(!values.birthDate) {
+        errors.birthDate = "Birthdate is required";
+    } else if(!/^\d{4}[./-]\d{2}[./-]\d{2}$/.test(values.birthDate)) {
+        errors.birthDate = "Birthdate is invalid";
     }
 
     return errors;

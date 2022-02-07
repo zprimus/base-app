@@ -2,8 +2,8 @@ import './FormSuccess.css';
 
 const FormSuccess = () => {
     return(
-        <div>
-            Form Success
+        <div className='FormSuccess'>
+            <h2>We have received your request!</h2>
         </div>
     )
 }

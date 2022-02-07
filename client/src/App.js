@@ -21,7 +21,10 @@ function AppContainer() {
       <HeaderBar/>
       <Routes>
         <Route path="*" element={<Home/>}/>
-        <Route path="/usersettings" element={<UserSettings/>}/>
+        {
+          localStorage.getItem('token') &&
+          <Route path="/usersettings" element={<UserSettings/>}/>
+        }
       </Routes>
     </div>
     

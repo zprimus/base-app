@@ -117,6 +117,9 @@ const FormRegister = (props) => {
             Already have an account? Login
           </Link>
         </div>
+        <br/>
+        <br/>
+        <br/>
       </div>
     )
 }
