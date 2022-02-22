@@ -1,17 +1,15 @@
-// login/register template
-
 // dependencies
 import { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-// features
-import { login } from '../reducers/user';
-
 // api
 import api_login from '../api/login';
 import api_getUserData from '../api/getUserData';
+
+// features
+import { login } from '../reducers/user';
 
 // styles
 import './Login.css';
@@ -36,15 +34,15 @@ function Login() {
 
       // get user data from db
       const data_getUserData = await api_getUserData();
+      const { name, email, phoneNumber, birthDate } = data_getUserData;
 
       // send data to redux store
       dispatch(
         login({
-          name: data_getUserData.name,
-          email: data_getUserData.email,
-          phoneNumber: data_getUserData.phoneNumber,
-          birthDate: data_getUserData.birthDate,
-          ethnicity: data_getUserData.ethnicity,
+          name: name,
+          email: email,
+          phoneNumber: phoneNumber,
+          birthDate: birthDate,
         })
       );    
 
@@ -78,6 +76,11 @@ function Login() {
           placeholder="Password"
         />
         <br/>
+        <div id="forgot-password">
+          <Link to='/login'>
+            Forgot password? Click here
+          </Link>
+        </div>
         <br/>
         <br/>
         <Form.Control
@@ -85,7 +88,6 @@ function Login() {
           type="submit"
         />
       </Form>
-      <br/>
       <br/>
       <br/>
       <div id="register">

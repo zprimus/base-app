@@ -9,7 +9,6 @@ const User = new mongoose.Schema(
         phoneNumber: { type: String, required: false },
         password: { type: String, required: true },
         birthDate: { type: Date, required: true },
-        ethnicity: { type: Array, required: false },
     },
     {
         collection: 'user'

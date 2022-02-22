@@ -1,0 +1,9 @@
+.custom-dropdown-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.custom-dropdown-item label {
+    margin-right: 10px;
+}

@@ -1,9 +1,9 @@
 // components
-import FormRegister from '../components/forms/FormRegister';
-import FormSuccess from '../components/forms/FormSuccess';
+import FormRegister from '../components/forms/FormRegister.js';
+import FormSuccess from '../components/forms/FormSuccess.js';
 
 // custom hooks
-import useForm from '../hooks/useForm';
+import useForm from '../hooks/useFormRegister';
 
 // styles
 import './Register.css';
@@ -11,13 +11,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Register() {
   const { handleSubmit, handleChange, values, errors, isSubmitted } = useForm();
-  //console.log(values)  
+  
   return (
     <div className='Register'>
       <div id='art'>
-        
       </div>
       <div id='form'>
+        <div id='header'>
+          <br/>
+          <br/>
+          <br/>
+          <h1>Register</h1>
+          <br/>
+          <br/>
+        </div>
+        <div id='body'>
         {
           !isSubmitted ? (
             <FormRegister
@@ -30,6 +38,10 @@ function Register() {
             <FormSuccess/>
           )
         }
+        <br/>
+        <br/>
+        <br/>
+        </div>
       </div>
     </div>
   );

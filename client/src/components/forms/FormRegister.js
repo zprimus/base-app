@@ -1,7 +1,7 @@
 // dependencies
 //import { useEffect, useState } from 'react';
 //import { useNavigate, Link } from "react-router-dom";
-import { Form } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 // styles
@@ -13,23 +13,14 @@ const FormRegister = (props) => {
 
     return(
       <div className='FormRegister'>
-        <br/>
-        <br/>
-        <br/>
-        <div>
-          <h1 id='header'>Register</h1>
-        </div>
-        <br/>
-        <br/>
-        <br/>
         <Form onSubmit={ handleSubmit }>
           <Form.Label>Name</Form.Label>
           <Form.Control
-              name='name'
-              type='text'
-              placeholder='Enter Name here'
-              value={values.name}
-              onChange={handleChange}
+            name='name'
+            type='text'
+            placeholder='Enter Name here'
+            value={values.name}
+            onChange={handleChange}
           />
           {
             errors.name &&
@@ -76,14 +67,16 @@ const FormRegister = (props) => {
           }
           <br/>
           <Form.Label>Phone Number (optional)</Form.Label>
-          <Form.Control
-            name='phoneNumber'
-            type="tel"
-            placeholder="Enter Phone Number here"
-            value={values.phoneNumber}
-            onChange={handleChange}
-            
-          />
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">+1</InputGroup.Text>
+            <Form.Control
+              name='phoneNumber'
+              type="tel"
+              placeholder="Enter Phone Number here"
+              value={values.phoneNumber}
+              onChange={handleChange}
+            />
+          </InputGroup>
           {
             errors.phoneNumber &&
             <p className='error'>{errors.phoneNumber}</p>
@@ -93,7 +86,6 @@ const FormRegister = (props) => {
           <Form.Control
             name='birthDate'
             type='date'
-            min='1900-01-01'
             value={values.birthDate}
             onChange={handleChange}
           />
@@ -103,7 +95,6 @@ const FormRegister = (props) => {
           }
           <br/>
           <br/>
-          <br/>
           <Form.Control 
             value="Register"
             type="submit"
@@ -111,15 +102,11 @@ const FormRegister = (props) => {
         </Form>
         <br/>
         <br/>
-        <br/>
         <div id="login">
           <Link to='/login'>
             Already have an account? Login
           </Link>
         </div>
-        <br/>
-        <br/>
-        <br/>
       </div>
     )
 }

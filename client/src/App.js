@@ -1,7 +1,7 @@
 // login/register template
 
 // dependencies
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // pages
 import Login from './pages/Login';

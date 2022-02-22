@@ -31,12 +31,11 @@ app.post('/api/register', async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             password: hashedPassword,
             birthDate: req.body.birthDate,
-            ethnicity: req.body.ethnicity,
         })
-        res.json({status: 'ok'})
+        return res.json({status: 'ok'})
     } catch(err) {
         console.log(err)
-        res.json({status: 'error', error: 'Duplicate email'})
+        return res.json({status: 'error', error: 'E-mail already exists'})
     }
 })
 
@@ -54,7 +53,6 @@ app.post('/api/login', async (req, res) => {
     if(isPasswordValid) {
         const token = jwt.sign(
             {
-                name: user.name,
                 email: user.email
             }, 
             process.env.JWT_SECRET
@@ -80,26 +78,47 @@ app.get('/api/getUserData', async (req, res) => {
             email: user.email,
             phoneNumber: user.phoneNumber,
             birthDate: user.birthDate,
-            ethnicity: user.ethnicity,
         })
     } catch(err) {
         console.log(err)
-        res.json({ status: 'error', error: 'invalid token'})
+        return res.json({ status: 'error', error: 'Invalid token'})
     }
 })
 
-app.post('/api/quote', async (req, res) => {
+app.post('/api/updateUserData', async (req, res) => {
     const token = req.headers['x-access-token']
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         const email = decoded.email
-        const user = await User.updateOne({email: email}, { $set: { quote: req.body.quote } })
 
-        return res.json({ status: 'ok', quote: user.quote })
-    } catch {
+        const replacementEmail = await User.findOne({email: req.body.email});
+
+        if(replacementEmail && (replacementEmail !== email)) {
+            return res.json({ status: 'error' , error: 'E-mail already exists' })
+        } else {
+            const response = await User.updateOne({email: email}, { 
+                $set: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    phoneNumber: req.body.phoneNumber,
+                    birthDate: req.body.birthDate,
+                }
+            })
+
+            const token = jwt.sign(
+                {
+                    email: replacementEmail
+                }, 
+                process.env.JWT_SECRET
+            )
+
+            return res.json({ status: 'ok', user: token, response: response })
+        }
+        
+    } catch(err) {
         console.log(err)
-        res.json({ status: 'error', error: 'invalid token'})
+        return res.json({ status: 'error', error: 'Invalid token'})
     }
 })
 

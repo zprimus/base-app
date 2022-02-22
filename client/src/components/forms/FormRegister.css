@@ -4,21 +4,15 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100vh;
-}
-
-.FormRegister #header {
-    justify-self: left;
-    width: 50vw;
 }
 
 .FormRegister Form {
-    width: 50vw;
+    width: 100%;
 }
 
 .FormRegister #login {
+    width: 100%;
     justify-self: left;
-    width: 50vw;
 }
 
 .error {

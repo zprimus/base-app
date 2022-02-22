@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     min-height: 100vh;
+    width: 100vw;
 }
 
 .Register #art {
@@ -9,7 +10,17 @@
 
 .Register #form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
+}
+
+.Register #header {
+    width: 50%;
+    justify-self: left;
+}
+
+.Register #body {
+    width: 50%;
 }
