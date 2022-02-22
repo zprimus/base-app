@@ -4,8 +4,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
-import { Button, Dropdown } from 'react-bootstrap';
-import { FaUserAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
 // components
@@ -26,18 +24,21 @@ function HeaderBar() {
 
     const dispatch = useDispatch();
 
+    
+
     useEffect(() => {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         if(token) {
-            const user = jwtDecode(token)
+            const user = jwtDecode(token);
             if(!user) {
-                localStorage.removeItem('token')
-                setUserExists(false)
+                localStorage.removeItem('token');
+                setUserExists(false);
+                alert("Error: Token is corrupted.")
             } else {
-                setUserExists(true)
+                setUserExists(true);
             }
         }
-    }, [])
+    });
 
     function handleLogout() {
         localStorage.removeItem('token');

@@ -1,5 +1,6 @@
 // dependencies
 import { useSelector } from 'react-redux';
+import { Alert } from 'react-bootstrap';
 
 // components
 import FormUserSettings from '../components/forms/FormUserSettings.js';
@@ -44,6 +45,12 @@ function UserSettings() {
                         />
                     }
                 </div>
+                {
+                    isSubmitted &&
+                    <Alert variant='success'>
+                        Changes have been saved!
+                    </Alert>
+                }
             </div>
         </div>
     );

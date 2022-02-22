@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Dropdown, ToggleButton } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { BiLogIn, BiLogOut } from 'react-icons/bi';
-import { BsGearFill, BsEyeFill } from 'react-icons/bs';
+import { BsGearFill } from 'react-icons/bs';
 import { FaUserAlt } from 'react-icons/fa';
 
 // components

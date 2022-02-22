@@ -1,7 +1,7 @@
 // dependencies
 import { useState } from 'react';
 import { Form, Button, Col, InputGroup } from 'react-bootstrap';
-import { Alert } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 // styles
 import './FormUserSettings.css';
@@ -114,12 +114,6 @@ const FormUserSettings = (props) => {
                     )
                 }
             </Form>
-            {
-                isSubmitted &&
-                <Alert variant='success'>
-                    Changes have been saved!
-                </Alert>
-            }
         </div>
     )
 }
